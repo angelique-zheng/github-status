@@ -1,7 +1,9 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import logo from './logo.svg';
+import { GithubSystemReport } from './ui/pages/GithubSystemReport';
 
-function App() {
+export const ReactDefaultApp: React.FC = () => {
     return (
         <div className="App">
             <header className="App-header">
@@ -15,6 +17,15 @@ function App() {
             </header>
         </div>
     );
-}
+};
 
-export default App;
+export const App: React.FC = () => {
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<ReactDefaultApp />} />
+                <Route path="/status" element={<GithubSystemReport />} />
+            </Routes>
+        </BrowserRouter>
+    );
+};
