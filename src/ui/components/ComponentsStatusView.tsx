@@ -1,7 +1,8 @@
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { GithubComponent } from '../../domain/github/GithubComponent';
-import { StyleSheet } from '../../utils/StyleSheet';
 
 type ComponentsStatusViewProps = {
     componentsStatus: GithubComponent[];
@@ -9,9 +10,9 @@ type ComponentsStatusViewProps = {
 
 export const ComponentsStatusView: React.FC<ComponentsStatusViewProps> = ({ componentsStatus }) => {
     return (
-        <div style={styles.mainContainer}>
+        <div css={styles.mainContainer}>
             {componentsStatus.map(data => (
-                <ComponentsStatusItem data={data} />
+                <ComponentsStatusItem data={data} key={data.id} />
             ))}
         </div>
     );
@@ -23,54 +24,54 @@ type ComponentsStatusItemProps = {
 
 const ComponentsStatusItem: React.FC<ComponentsStatusItemProps> = ({ data }) => {
     return (
-        <div style={styles.itemContainer}>
-            <div style={styles.nameCheckContainer}>
-                <div style={styles.nameContainer}>
-                    <p style={styles.name}>{data.name}</p>
-                    <HelpOutlineIcon sx={styles.infoIcon} />
+        <div css={styles.itemContainer}>
+            <div css={styles.nameCheckContainer}>
+                <div css={styles.nameContainer}>
+                    <p css={styles.name}>{data.name}</p>
+                    <HelpOutlineIcon css={styles.infoIcon} />
                 </div>
-                <CheckCircleIcon sx={styles.checkIcon} />
+                <CheckCircleIcon css={styles.checkIcon} />
             </div>
-            <p style={styles.status}>{data.status}</p>
+            <p css={styles.status}>{data.status}</p>
         </div>
     );
 };
 
-const styles: StyleSheet = {
-    mainContainer: {
+const styles = {
+    mainContainer: css({
         maxWidth: 1200,
         margin: '0 auto',
         display: 'grid',
         gap: '1rem'
-    },
-    itemContainer: {
+    }),
+    itemContainer: css({
         width: 300,
         border: 'solid',
         padding: '10px 20px'
-    },
-    nameCheckContainer: {
+    }),
+    nameCheckContainer: css({
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between'
-    },
-    nameContainer: {
+    }),
+    nameContainer: css({
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center'
-    },
-    name: {
+    }),
+    name: css({
         margin: '10px 6px 8px 0px'
-    },
-    checkIcon: {
+    }),
+    checkIcon: css({
         color: '#43a047'
-    },
-    infoIcon: {
+    }),
+    infoIcon: css({
         color: '#666666',
         width: 18,
         height: 18
-    },
-    status: {
+    }),
+    status: css({
         margin: 0
-    }
+    })
 };

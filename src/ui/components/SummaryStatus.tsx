@@ -1,7 +1,8 @@
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 import { green, orange, red } from '@mui/material/colors';
 import { GithubStatus } from '../../domain/github/GithubStatus';
 import { icons } from '../../res/icons';
-import { StyleSheet } from '../../utils/StyleSheet';
 
 type SummaryStatusProps = {
     status: GithubStatus;
@@ -9,15 +10,15 @@ type SummaryStatusProps = {
 
 export const SummaryStatus: React.FC<SummaryStatusProps> = ({ status }) => {
     return (
-        <div style={styles.container}>
-            <img style={styles.summaryStatusIcon} src={statusIcon[status.indicator]} />
+        <div css={styles.container}>
+            <img css={styles.summaryStatusIcon} src={statusIcon[status.indicator]} />
             <h2>{status.description}</h2>
         </div>
     );
 };
 
-const styles: StyleSheet = {
-    container: {
+const styles = {
+    container: css({
         height: 'auto',
         display: 'flex',
         flexDirection: 'row',
@@ -27,23 +28,23 @@ const styles: StyleSheet = {
         margin: '16px 24px',
         paddingLeft: '16px',
         borderRadius: '5px'
-    },
-    summaryStatusIcon: {
+    }),
+    summaryStatusIcon: css({
         width: '40px',
         height: '40px'
-    },
-    none: {
+    }),
+    none: css({
         backgroundColor: green[600]
-    },
-    minor: {
+    }),
+    minor: css({
         backgroundColor: green[300]
-    },
-    major: {
+    }),
+    major: css({
         backgroundColor: orange.A700
-    },
-    critical: {
+    }),
+    critical: css({
         backgroundColor: red[900]
-    }
+    })
 };
 
 const statusIcon = {

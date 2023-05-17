@@ -19,7 +19,8 @@
 		"isolatedModules": true,
 		"noEmit": true,
 		"jsx": "react-jsx",
-		"noImplicitReturns": true,
+		"jsxImportSource": "@emotion/react",
+		"noImplicitReturns": true
 	},
 	"compileOnSave": true,
 	"include": [
