@@ -12,7 +12,7 @@ export const SummaryStatus: React.FC<SummaryStatusProps> = ({ status }) => {
     return (
         <div css={styles.container}>
             <img css={styles.summaryStatusIcon} src={statusIcon[status.indicator]} />
-            <h2>{status.description}</h2>
+            <h2 css={styles.description}>{status.description}</h2>
         </div>
     );
 };
@@ -25,9 +25,10 @@ const styles = {
         backgroundColor: green[500],
         color: 'white',
         alignItems: 'center',
-        margin: '16px 24px',
+        margin: '16px 20px',
         paddingLeft: '16px',
-        borderRadius: '5px'
+        borderRadius: '5px',
+        minWidth: '40px'
     }),
     summaryStatusIcon: css({
         width: '40px',
@@ -44,6 +45,9 @@ const styles = {
     }),
     critical: css({
         backgroundColor: red[900]
+    }),
+    description: css({
+        margin: '14px 0px'
     })
 };
 

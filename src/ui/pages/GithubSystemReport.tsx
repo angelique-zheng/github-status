@@ -31,6 +31,9 @@ export const GithubSystemReport: React.FC = () => {
 
 const styles = {
     mainContainer: css({
-        margin: '0px 200px'
+        margin: '0px 100px',
+        '@media (min-width: 900px)': {
+            margin: '0px 200px'
+        }
     })
 };

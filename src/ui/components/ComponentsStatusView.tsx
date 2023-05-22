@@ -2,6 +2,7 @@
 import { css } from '@emotion/react';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import { Tooltip } from '@mui/material';
 import { GithubComponent } from '../../domain/github/GithubComponent';
 
 type ComponentsStatusViewProps = {
@@ -27,8 +28,12 @@ const ComponentsStatusItem: React.FC<ComponentsStatusItemProps> = ({ data }) => 
         <div css={styles.itemContainer}>
             <div css={styles.nameCheckContainer}>
                 <div css={styles.nameContainer}>
-                    <p css={styles.name}>{data.name}</p>
-                    <HelpOutlineIcon css={styles.infoIcon} />
+                    <h4 css={styles.name}>{data.name}</h4>
+                    {data.description && (
+                        <Tooltip title={data.description} placement="top" css={styles.infoIconContainer}>
+                            <HelpOutlineIcon css={styles.infoIcon} />
+                        </Tooltip>
+                    )}
                 </div>
                 <CheckCircleIcon css={styles.checkIcon} />
             </div>
@@ -42,12 +47,29 @@ const styles = {
         maxWidth: 1200,
         margin: '0 auto',
         display: 'grid',
-        gap: '1rem'
+        '@media (min-width: 900px)': {
+            gridTemplateColumns: 'repeat(2, 1fr)'
+        }
     }),
     itemContainer: css({
-        width: 300,
-        border: 'solid',
-        padding: '10px 20px'
+        border: '1px solid grey',
+        padding: '10px 20px',
+        borderBottom: 'none',
+        '&:nth-last-child(1)': {
+            borderBottom: '1px solid grey'
+        },
+        '@media (min-width: 900px)': {
+            '&:nth-child(odd)': {
+                borderBottom: 'none',
+                borderRight: 'none'
+            },
+            '&:nth-child(even)': {
+                borderBottom: 'none'
+            },
+            '&:nth-last-child(-n + 2)': {
+                borderBottom: '1px solid grey'
+            }
+        }
     }),
     nameCheckContainer: css({
         display: 'flex',
@@ -66,12 +88,18 @@ const styles = {
     checkIcon: css({
         color: '#43a047'
     }),
+    infoIconContainer: css({
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center'
+    }),
     infoIcon: css({
         color: '#666666',
         width: 18,
         height: 18
     }),
     status: css({
-        margin: 0
+        margin: 0,
+        textTransform: 'capitalize'
     })
 };
