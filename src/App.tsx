@@ -1,31 +1,24 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import './App.css';
-import logo from './logo.svg';
-import { GithubSystemReport } from './ui/pages/GithubSystemReport';
-
-export const ReactDefaultApp: React.FC = () => {
-    return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-                    Learn React
-                </a>
-            </header>
-        </div>
-    );
-};
+import logo from './assets/github-mark.svg';
+import { strings } from './res/strings';
 
 export const App: React.FC = () => {
+    const navigate = useNavigate();
+
+    const goToGithubSystemReport = () => {
+        navigate('/status');
+    };
+
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<ReactDefaultApp />} />
-                <Route path="/status" element={<GithubSystemReport />} />
-            </Routes>
-        </BrowserRouter>
+        <main className="App">
+            <h3>This is not an official github site</h3>
+            <img src={logo} className="App-logo" alt="logo" />
+            <h4>A kind of clone of the site https://www.githubstatus.com/</h4>
+            <Button onClick={goToGithubSystemReport} variant="contained">
+                {strings.navigation.seeStatus}
+            </Button>
+        </main>
     );
 };

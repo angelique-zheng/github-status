@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { Loading, StatefulData } from '../../domain/StatefulData';
 import { GithubSummary } from '../../domain/github/GithubSummary';
 import { GithubUseCase } from '../../domain/github/GithubUseCase';
+import { strings } from '../../res/strings';
 import { ComponentsStatusView } from '../components/ComponentsStatusView';
 import { StatefulDataView } from '../components/StatefulDataView';
 import { SummaryStatus } from '../components/SummaryStatus';
@@ -13,7 +14,7 @@ export const GithubSystemReport: React.FC = () => {
     const [githubData, setGithubData] = useState<StatefulData<GithubSummary>>(Loading());
     const useCase = new GithubUseCase();
 
-    useAsyncEffect(function* (onCancel, call) {
+    useAsyncEffect(function* (_, call) {
         setGithubData(yield* call(useCase.getGithubStatusInfo()));
     }, []);
 
@@ -21,6 +22,7 @@ export const GithubSystemReport: React.FC = () => {
         return (
             <main css={styles.mainContainer}>
                 <SummaryStatus status={data.status} />
+                <h2>{strings.pages.github.currentStatus}</h2>
                 <ComponentsStatusView componentsStatus={data.components} />
             </main>
         );

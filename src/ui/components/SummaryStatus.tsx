@@ -25,7 +25,7 @@ const styles = {
         backgroundColor: green[500],
         color: 'white',
         alignItems: 'center',
-        margin: '16px 20px',
+        margin: '26px 20px 40px',
         paddingLeft: '16px',
         borderRadius: '5px',
         minWidth: '40px'
