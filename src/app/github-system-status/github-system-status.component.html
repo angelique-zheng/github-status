@@ -1,0 +1,38 @@
+<main class="github-main-container" *ngIf="githubInformation.status === 'Success'">
+    <div class="summary-container {{ getSummaryColorByStatus(githubInformation.data.status.indicator) }}">
+        <mat-icon
+            class="icon"
+            [fontIcon]="getIconByStatus(githubInformation.data.status.indicator)"
+            aria-hidden="false"
+            aria-label="Summary status icon"
+        />
+        <h2>{{ githubInformation.data.status.description }}</h2>
+    </div>
+
+    <div class="components-container">
+        <div class="component-container" *ngFor="let component of githubInformation.data.components">
+            <div class="name-icon-container">
+                <div class="name-help-container">
+                    <h4 class="name">{{ component.name }}</h4>
+                    <mat-icon
+                        *ngIf="component.description"
+                        class="icon"
+                        fontIcon="help_outline"
+                        [matTooltip]="component.description"
+                        matTooltipPosition="above"
+                        aria-hidden="false"
+                        aria-label="Summary status icon"
+                    />
+                </div>
+                <mat-icon
+                    class="icon  {{ getIconColorsByStatus(component.status) }}"
+                    [fontIcon]="getIconByStatus(component.status)"
+                    aria-hidden="false"
+                    aria-label="Component status icon"
+                />
+            </div>
+            <p class="status">{{ component.status }}</p>
+        </div>
+    </div>
+</main>
+<ng-template #elseBlock>Error case</ng-template>

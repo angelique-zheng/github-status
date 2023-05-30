@@ -1,0 +1,104 @@
+.github-main-container {
+    margin: 82px 100px 0px;
+}
+
+.summary-container {
+    height: auto;
+    display: flex;
+    flex-direction: 'row';
+    color: white;
+    align-items: center;
+    margin: 16px 24px;
+    padding: 10px 0px 10px 16px;
+    border-radius: 6px;
+}
+.summary-container > .icon {
+    margin-right: 10px;
+}
+
+.summary-container > h2 {
+    margin: 8px 0px;
+}
+
+.components-container {
+    max-width: 1200;
+    margin: 0 auto;
+    display: grid;
+}
+
+@media (min-width: 700px) {
+    .components-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.component-container {
+    border: 1px solid grey;
+    padding: 10px 20px;
+    border-bottom: none;
+}
+.component-container:nth-last-child(1) {
+    border-bottom: 1px solid grey;
+}
+
+@media (min-width: 900px) {
+    .component-container:nth-child(odd) {
+        border-right: none;
+    }
+    .component-container:nth-last-child(-n + 2) {
+        border-bottom: 1px solid grey;
+    }
+}
+
+.name-icon-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.name-help-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.component-container .name {
+    margin: 4px 4px 0px 0px;
+}
+
+.component-container .status {
+    text-transform: capitalize;
+}
+
+.summary-green {
+    background-color: #28a745;
+}
+
+.summary-blue {
+    background-color: #1976d2;
+}
+
+.summary-yellow {
+    background-color: #e18801;
+}
+
+.summary-red {
+    background-color: #c30000;
+}
+
+.green-icon {
+    color: #28a745;
+}
+
+.blue-icon {
+    color: #1976d2;
+}
+
+.yellow-icon {
+    color: #e18801;
+}
+
+.red-icon {
+    color: #c30000;
+}
