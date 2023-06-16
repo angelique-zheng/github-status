@@ -1,29 +1,22 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import InfoIcon from '@mui/icons-material/Info';
+import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import { Tooltip } from '@mui/material';
-import { GithubComponent } from '../../domain/github/GithubComponent';
+import { useMemo } from 'react';
+import { GithubComponent } from '../../../domain/github/GithubComponent';
 
-type ComponentsStatusViewProps = {
-    componentsStatus: GithubComponent[];
-};
-
-export const ComponentsStatusView: React.FC<ComponentsStatusViewProps> = ({ componentsStatus }) => {
-    return (
-        <div css={styles.mainContainer}>
-            {componentsStatus.map(data => (
-                <ComponentsStatusItem data={data} key={data.id} />
-            ))}
-        </div>
-    );
-};
-
-type ComponentsStatusItemProps = {
+type GithunComponentItemStatusProps = {
     data: GithubComponent;
 };
 
-const ComponentsStatusItem: React.FC<ComponentsStatusItemProps> = ({ data }) => {
+export const GithubComponentItemStatus: React.FC<GithunComponentItemStatusProps> = ({ data }) => {
+    const StatusIconComponent = useMemo(() => statusIcon[data.status], [data.status]);
+    const iconColor: string = useMemo(() => statusIconColor[data.status], [data.status]);
+
     return (
         <div css={styles.itemContainer}>
             <div css={styles.nameCheckContainer}>
@@ -35,7 +28,7 @@ const ComponentsStatusItem: React.FC<ComponentsStatusItemProps> = ({ data }) => 
                         </Tooltip>
                     )}
                 </div>
-                <CheckCircleIcon css={styles.checkIcon} />
+                <StatusIconComponent css={{ color: iconColor }} />
             </div>
             <p css={styles.status}>{data.status}</p>
         </div>
@@ -43,14 +36,6 @@ const ComponentsStatusItem: React.FC<ComponentsStatusItemProps> = ({ data }) => 
 };
 
 const styles = {
-    mainContainer: css({
-        maxWidth: 1200,
-        margin: '0 auto',
-        display: 'grid',
-        '@media (min-width: 900px)': {
-            gridTemplateColumns: 'repeat(2, 1fr)'
-        }
-    }),
     itemContainer: css({
         border: '1px solid grey',
         padding: '10px 20px',
@@ -60,11 +45,7 @@ const styles = {
         },
         '@media (min-width: 900px)': {
             '&:nth-child(odd)': {
-                borderBottom: 'none',
                 borderRight: 'none'
-            },
-            '&:nth-child(even)': {
-                borderBottom: 'none'
             },
             '&:nth-last-child(-n + 2)': {
                 borderBottom: '1px solid grey'
@@ -85,9 +66,6 @@ const styles = {
     name: css({
         margin: '10px 6px 8px 0px'
     }),
-    checkIcon: css({
-        color: '#43a047'
-    }),
     infoIconContainer: css({
         justifyContent: 'center',
         alignItems: 'center',
@@ -102,4 +80,18 @@ const styles = {
         margin: 0,
         textTransform: 'capitalize'
     })
+};
+
+const statusIcon = {
+    operational: CheckCircleIcon,
+    degraded_performance: InfoIcon,
+    partial_outage: WarningAmberIcon,
+    major_outage: ErrorOutlineIcon
+};
+
+const statusIconColor = {
+    operational: '#43a047',
+    degraded_performance: '#1976d2',
+    partial_outage: '#e18801',
+    major_outage: '#c30000'
 };

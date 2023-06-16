@@ -26,7 +26,3 @@ export const Failure = <E = string>(error?: E): FailureData<E> => ({
     status: 'Failure',
     error
 });
-
-export const unwrapSuccessData = <T>(data: StatefulData<T>): T | undefined => {
-    return data.status === 'Success' ? data.data : undefined;
-};

@@ -15,7 +15,7 @@ export const FailureMessage: React.FC<FailureMessageProps> = ({ error }) => {
         <div css={styles.main}>
             <div css={styles.container}>
                 <CancelOutlinedIcon css={styles.icon} />
-                <h2>{strings.errors.defaultError}</h2>
+                <h2>{error ? error : strings.errors.defaultError}</h2>
             </div>
         </div>
     );

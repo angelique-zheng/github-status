@@ -3,13 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import './App.css';
 import logo from './assets/github-mark.svg';
 import { strings } from './res/strings';
+import { useCallback } from 'react';
 
 export const App: React.FC = () => {
     const navigate = useNavigate();
 
-    const goToGithubSystemReport = () => {
+    const goToGithubSystemReport = useCallback(() => {
         navigate('/status');
-    };
+    }, [navigate]);
 
     return (
         <main className="App">

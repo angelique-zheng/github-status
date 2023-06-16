@@ -1,14 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { green, orange, red } from '@mui/material/colors';
-import { GithubStatus } from '../../domain/github/GithubStatus';
-import { icons } from '../../res/icons';
+import { GithubStatus } from '../../../domain/github/GithubStatus';
+import { icons } from '../../../res/icons';
 
-type SummaryStatusProps = {
+type GithubSummaryStatusProps = {
     status: GithubStatus;
 };
 
-export const SummaryStatus: React.FC<SummaryStatusProps> = ({ status }) => {
+export const GithubSummaryStatus: React.FC<GithubSummaryStatusProps> = ({ status }) => {
     return (
         <div css={styles.container}>
             <img css={styles.summaryStatusIcon} src={statusIcon[status.indicator]} />
