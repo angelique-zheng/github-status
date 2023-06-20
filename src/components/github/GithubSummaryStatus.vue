@@ -13,7 +13,7 @@ const icons = {
 </script>
 
 <template>
-    <div class="summary-container">
+    <div v-bind:class="'summary-container summary-' + status.indicator">
         <v-icon
             class="summary-icon"
             color="white"
@@ -36,6 +36,23 @@ const icons = {
     padding: 10px 0px 10px 16px;
     border-radius: 6px;
 }
+
+.summary-none {
+    background-color: #28a745;
+}
+
+.summary-minor {
+    background-color: #1976d2;
+}
+
+.summary-major {
+    background-color: #e18801;
+}
+
+.summary-critical {
+    background-color: #c30000;
+}
+
 .summary-icon {
     margin-right: 10px;
 }

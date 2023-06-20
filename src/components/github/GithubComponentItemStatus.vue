@@ -4,6 +4,18 @@ import type { GithubComponent } from '../../domain/github/GithubComponent'
 defineProps<{
     component: GithubComponent
 }>()
+const icons = {
+    operational: 'mdi-check-circle',
+    degraded_performance: 'mdi-information-variant-circle-outline',
+    partial_outage: 'mdi-alert-outline',
+    major_outage: 'mdi-close-circle-outline'
+}
+const colors = {
+    operational: '#28a745',
+    degraded_performance: '#1976d2',
+    partial_outage: '#e18801',
+    major_outage: '#c30000'
+}
 </script>
 
 <template>
@@ -24,7 +36,12 @@ defineProps<{
                     <span>{{ component.description }}</span>
                 </v-tooltip>
             </div>
-            <v-icon class="summary-icon" color="#28a745" icon="mdi-check-circle" size="26" />
+            <v-icon
+                class="summary-icon"
+                v-bind:color="colors[component.status]"
+                v-bind:icon="icons[component.status]"
+                size="26"
+            />
         </div>
         <p class="status">{{ component.status }}</p>
     </div>
